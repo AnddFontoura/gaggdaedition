@@ -19,6 +19,7 @@ class CreateUserInformationTable extends Migration
             $table->string('cpf', 15)->nullable(true);
             $table->string('payment_receipt', 1000)->nullable(true);
             $table->date('birthday')->nullable(true);
+            $table->boolean('payment_approved')->default(0);
             $table->timestamps();
             $table->softDeletes();
 

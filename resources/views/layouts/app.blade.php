@@ -21,12 +21,12 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+
+<body class="container">
+        <nav class="navbar navbar-expand-md navbar-gray  navbar-dark bg-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    Gol a Gol Experience
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -43,13 +43,16 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}"> Entrar </a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}"> Cadastrar </a>
                                 </li>
                             @endif
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}"> Tabela de Resultados </a>
+                            </li>
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -75,8 +78,35 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="row">
+                <div class="col-md-6 col-lg-6 col-sm-12">
+                    @yield('content')
+                </div>
+
+                <div class="col-md-6 col-lg-6 col-sm-12">
+                    <img src="{{ asset('img/banner_experience.png') }}" class="img w-100"></img>
+                </div>
+            </div>
         </main>
-    </div>
+
+        <footer class="text-center">
+            <h1> Apoio:</h1>
+
+            <div class="row m-0 mt-3 p-0">
+                <div class="col-6 col-md-4 mb-3">
+                    <img src="{{ asset('img/gda-200w.png') }}"></img>
+                </div>
+
+                <div class="col-6 col-md-4 mb-3">
+                    <img src="{{ asset('img/futshop-200w.png') }}"></img>
+                </div>
+
+                <div class="col-6 col-md-4 mb-3">
+                    <img src="{{ asset('img/fontoura-200w.png') }}"></img>
+                </div>
+            </div>
+
+        </footer>
+</div>
 </body>
 </html>

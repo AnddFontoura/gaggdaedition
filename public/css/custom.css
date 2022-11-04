@@ -1,5 +1,25 @@
 /**
+    smi adrk: #171714;
     Orange: #F89F39
     Black: #FFFFFF
     Gray: #313131
+    light-gray: #5D5D5D;
  */
+body {
+
+}
+
+.navbar-gray {
+    background-color: #5D5D5D;
+    color: white;
+}
+
+.card-info {
+    background-color: #F89F39;
+    color: #ffffff;
+}
+
+footer {
+    color: #cbccce;
+    background-color: #171714;
+}
