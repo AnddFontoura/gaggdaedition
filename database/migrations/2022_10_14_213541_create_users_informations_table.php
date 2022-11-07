@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserInformationTable extends Migration
+class CreateUsersInformationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateUserInformationTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_information', function (Blueprint $table) {
+        Schema::create('users_informations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable(false);
             $table->string('cpf', 15)->nullable(true);
             $table->string('payment_receipt', 1000)->nullable(true);
             $table->date('birthday')->nullable(true);
