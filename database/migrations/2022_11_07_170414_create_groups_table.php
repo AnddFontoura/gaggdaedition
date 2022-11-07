@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersInformationsTable extends Migration
+class CreateGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateUsersInformationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_informations', function (Blueprint $table) {
+        Schema::create('groups', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->nullable(false);
-            $table->string('cpf', 15)->nullable(true);
-            $table->string('phone', 15)->nullable(true);
-            $table->string('payment_receipt', 1000)->nullable(true);
-            $table->date('birthday')->nullable(true);
-            $table->boolean('payment_approved')->default(0);
+            $table->string('group', 1)->nullable(false);
+            $table->integer('field')->nullable(false);
+            $table->integer('group_position')->nullable(false);
             $table->timestamps();
             $table->softDeletes();
 
@@ -35,6 +33,6 @@ class CreateUsersInformationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_information');
+        Schema::dropIfExists('groups');
     }
 }
