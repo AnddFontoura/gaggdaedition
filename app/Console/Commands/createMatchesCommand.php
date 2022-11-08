@@ -78,11 +78,14 @@ class createMatchesCommand extends Command
                     
                     $start = $matchStart->addMinutes($matchDuration * 2)->format('H:i');
 
-                    $match = Matches::create([
-                        'challenger_1' => $challenger_1_id,
-                        'challenger_2' => $challenger_2_id,
-                        'match_starts' => $start
-                    ]);
+                    $alreadyExists = Matches::where('challenger_1', $challenger_2_id)->where('challenger_2', $challenger_1_id)->first();
+                    if (!$alreadyExists) { 
+                        $match = Matches::create([
+                            'challenger_1' => $challenger_1_id,
+                            'challenger_2' => $challenger_2_id,
+                            'match_starts' => $start
+                        ]);
+                    }
                 }
                 $progressBar->advance();
             }

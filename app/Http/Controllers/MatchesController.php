@@ -14,7 +14,7 @@ class MatchesController extends Controller
      */
     public function index()
     {
-        $matches = Matches::orderBy('match_starts', 'asc')->get();
+        $matches = Matches::orderBy('match_starts', 'asc')->limit(20)->get();
 
         return view('match.index', compact('matches'));
     }
