@@ -44,9 +44,9 @@ class createMatchesCommand extends Command
 
         $groups = [
             'A',
-            'B',
-            'C',
-            'D',
+            //'B',
+            //'C',
+            //'D',
         ];
 
         $matchDuration = 6;
@@ -57,33 +57,33 @@ class createMatchesCommand extends Command
             } else {
                 $matchStart = new Carbon('2020-11-13 12:00');
             }
-            
+
             $players = Group::where('group', $groupName)->get()->toArray();
             $playerCount = count($players);
 
             $progressBar = $this->output->createProgressBar($playerCount);
             $progressBar->start();
 
-            for($i = 1; $i < 6; $i++) {
-                for($p = 0; $p < $playerCount; $p++) {
+            for ($i = 1; $i < 6; $i++) {
+                for ($p = 0; $p < $playerCount; $p++) {
                     $challenger_1_id = $players[$p]['id'];
-                    
+
                     /* Calculo do Id */
                     $challenger2Id = $p + $i;
                     if ($challenger2Id >= 6) {
-                        $challenger2Id -= 6;
+                        $challenger2Id = $challenger2Id - 6;
                     }
 
                     $challenger_2_id = $players[$challenger2Id]['id'];
-                    
+
                     $start = $matchStart->addMinutes($matchDuration * 2)->format('H:i');
 
                     $alreadyExists = Matches::where('challenger_1', $challenger_2_id)->where('challenger_2', $challenger_1_id)->first();
-                    if (!$alreadyExists) { 
+                    if (!$alreadyExists) {
                         $match = Matches::create([
                             'challenger_1' => $challenger_1_id,
                             'challenger_2' => $challenger_2_id,
-                            'match_starts' => $start
+                            'match_number' => $i
                         ]);
                     }
                 }

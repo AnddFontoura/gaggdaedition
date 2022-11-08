@@ -17,7 +17,7 @@ class CreateMatchesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('challenger_1')->nullable(false);
             $table->unsignedBigInteger('challenger_2')->nullable(false);
-            $table->time('match_starts')->nullable(false);
+            $table->integer('match_number')->nullable(false);
             $table->integer('challenger_1_score')->nullable(true)->default(0);
             $table->integer('challenger_2_score')->nullable(true)->default(0);
             $table->enum('type', ['GROUP', 'QUARTER', 'SEMI', 'FINAL'])->default('GROUP');

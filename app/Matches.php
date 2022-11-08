@@ -9,7 +9,7 @@ class Matches extends Model
     public $fillable = [
         'challenger_1',
         'challenger_2',
-        'match_starts',
+        'match_number',
         'challenger_1_score',
         'challenger_2_score',
         'type',

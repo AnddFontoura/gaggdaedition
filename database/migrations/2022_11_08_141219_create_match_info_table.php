@@ -27,7 +27,6 @@ class CreateMatchInfoTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            
             $table->foreign('match_id')->references('id')->on('matches');
             $table->foreign('group_id')->references('id')->on('groups');
         });
