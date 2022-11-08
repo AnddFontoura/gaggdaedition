@@ -7,7 +7,7 @@
                 <table class="table table-striped w-100">
                     <thead>
                         <tr>
-                            <th> Horário </th>
+                            <th> # </th>
                             <th style="width: 30%"> Jogador 1</th>
                             <th class="text-center">  </th>
                             <th class="text-center"> X </th>
@@ -21,7 +21,7 @@
                     <tbody>
                     @foreach($matches as $match)
                         <tr>
-                            <td> {{ $match->match_starts }} </td>
+                            <td> {{ $match->match_number }} </td>
                             <td style="width: 30%"> {{ $match->challenger1->userData->name }} {{ $match->challenger1->group_position }} </td>
                             <td class="text-center"> {{ $match->challenger_1_score }} </td>
                             <td class="text-center"> X </td>

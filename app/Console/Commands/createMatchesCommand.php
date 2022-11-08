@@ -44,9 +44,9 @@ class createMatchesCommand extends Command
 
         $groups = [
             'A',
-            //'B',
-            //'C',
-            //'D',
+            'B',
+            'C',
+            'D',
         ];
 
         $matchDuration = 6;
