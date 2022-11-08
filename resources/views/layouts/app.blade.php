@@ -43,7 +43,10 @@
                     </li>
                     @endif
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('group.index') }}"> Fase de Grupos </a>
+                        <a class="nav-link" href="{{ route('group.index') }}"> Pontuação dos Grupos </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('match.index') }}"> Jogos dos Grupos </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}"> Quartas de Finais </a>
