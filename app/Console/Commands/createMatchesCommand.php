@@ -40,6 +40,8 @@ class createMatchesCommand extends Command
      */
     public function handle()
     {
+        Matches::whereNull('deleted_at')->delete();
+
         $groups = [
             'A',
             'B',
@@ -51,9 +53,9 @@ class createMatchesCommand extends Command
 
         foreach ($groups as $groupName) {
             if ($groupName == "A" || $groupName == "C") {
-                $matchStart = new Carbon('2020-11-13 12:00');
+                $matchStart = new Carbon('2020-11-13 11:54');
             } else {
-                $matchStart = new Carbon('2020-11-13 12:06');
+                $matchStart = new Carbon('2020-11-13 12:00');
             }
             
             $players = Group::where('group', $groupName)->get()->toArray();
@@ -74,7 +76,7 @@ class createMatchesCommand extends Command
 
                     $challenger_2_id = $players[$challenger2Id]['id'];
                     
-                    $start = $matchStart->addMinutes($matchDuration)->format('H:i');
+                    $start = $matchStart->addMinutes($matchDuration * 2)->format('H:i');
 
                     $match = Matches::create([
                         'challenger_1' => $challenger_1_id,
