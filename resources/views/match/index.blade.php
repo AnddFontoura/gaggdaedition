@@ -22,11 +22,11 @@
                     @foreach($matches as $match)
                         <tr>
                             <td> {{ $match->match_number }} </td>
-                            <td style="width: 30%"> {{ $match->challenger1->userData->name }} {{ $match->challenger1->group_position }} </td>
+                            <td style="width: 30%"> {{ $match->challenger1->userData->name }}</td>
                             <td class="text-center"> {{ $match->challenger_1_score }} </td>
                             <td class="text-center"> X </td>
                             <td class="text-center"> {{ $match->challenger_2_score }} </td>
-                            <td style="width: 30%"> {{ $match->challenger2->userData->name }} {{ $match->challenger2->group_position }} </td>
+                            <td style="width: 30%"> {{ $match->challenger2->userData->name }}</td>
                             <td class="text-center"> {{ $match->challenger2->group }} </td>
                             <td class="text-center"> {{ $match->challenger2->field }} </td>
                         </tr> 
