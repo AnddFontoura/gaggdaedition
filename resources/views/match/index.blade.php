@@ -23,12 +23,12 @@
                         <tr>
                             <td> {{ $match->match_starts }} </td>
                             <td style="width: 30%"> {{ $match->challenger1->userData->name }} </td>
-                            <th class="text-center"> {{ $match->challenger_1_score }} </th>
-                            <th class="text-center"> X </th>
-                            <th class="text-center"> {{ $match->challenger_2_score }} </th>
-                            <th style="width: 30%"> {{ $match->challenger2->userData->name }} </th>
-                            <th class="text-center"> {{ $match->challenger2->group }} </th>
-                            <th class="text-center"> {{ $match->challenger2->field }} </th>
+                            <td class="text-center"> {{ $match->challenger_1_score }} </td>
+                            <td class="text-center"> X </td>
+                            <td class="text-center"> {{ $match->challenger_2_score }} </td>
+                            <td style="width: 30%"> {{ $match->challenger2->userData->name }} </td>
+                            <td class="text-center"> {{ $match->challenger2->group }} </td>
+                            <td class="text-center"> {{ $match->challenger2->field }} </td>
                         </tr> 
                     @endforeach
                     </tbody>
