@@ -81,13 +81,19 @@
 
     <main class="py-4">
         <div class="row">
+            @if(\Request::route()->getName() == 'login')
             <div class="col-md-6 col-lg-6 col-sm-12 mt-3">
+            @else
+                <div class="col-12 mt-3">
+            @endif
                 @yield('content')
             </div>
 
+            @if(\Request::route()->getName() == 'login')
             <div class="col-md-6 col-lg-6 col-sm-12 mt-3">
                 <img src="{{ asset('img/banner_experience.png') }}" class="img w-100"></img>
             </div>
+            @endif
         </div>
     </main>
 

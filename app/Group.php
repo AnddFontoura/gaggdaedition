@@ -11,6 +11,15 @@ class Group extends Model
         'group',
         'field',
         'group_position',
+        'points',
+        'matches',
+        'victories',
+        'drawns',
+        'defeats',
+        'goals_scored',
+        'goals_conceded',
+        'red_card',
+        'yellow_card',
     ];
 
     public function userData()

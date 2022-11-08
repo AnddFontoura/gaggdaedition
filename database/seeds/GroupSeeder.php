@@ -50,13 +50,13 @@ class GroupSeeder extends Seeder
                 'group_position' => '6',
             ],
             [
-                'user_id' => '6',
+                'user_id' => '17',
                 'field' => '1',
                 'group' => 'B',
                 'group_position' => '1',
             ],
             [
-                'user_id' => '11',
+                'user_id' => '12',
                 'field' => '1',
                 'group' => 'B',
                 'group_position' => '2',
@@ -146,7 +146,7 @@ class GroupSeeder extends Seeder
                 'group_position' => '4',
             ],
             [
-                'user_id' => '17',
+                'user_id' => '6',
                 'group' => 'D',
                 'field' => '2',
                 'group_position' => '5',
