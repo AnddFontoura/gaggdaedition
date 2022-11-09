@@ -32,7 +32,10 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
     
     Route::prefix('matches')->group(function() {
         Route::match(['post', 'get'], '/', 'AdminController@matchesIndex')->name('admin.matches');
+        Route::get('form', 'AdminController@matchesForm')->name('admin.matches.form');
+        Route::get('form/{id}', 'AdminController@matchesForm')->name('admin.matches.edit');
         Route::post('save', 'AdminController@matchesSave')->name('admin.matches.save');
+        Route::post('save/{id}', 'AdminController@matchesUpdate')->name('admin.matches.update');
     });
 
 });
