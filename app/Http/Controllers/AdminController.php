@@ -14,7 +14,7 @@ class AdminController extends Controller
         $matches = Matches::select();
 
         if ($filter) {
-            if (isset($filter['filterPlayer'])) {
+            if (isset($filter['filterPlayer']) && $filter['filterPlayer'] !== 0) {
                 $filterPlayer = $filter['filterPlayer'];
                 $matches = $matches->where(function ($matches) use ($filterPlayer) {
                     $matches->where('challenger_1', '=', $filterPlayer)

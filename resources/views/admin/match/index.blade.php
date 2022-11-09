@@ -15,6 +15,7 @@
                     <div class="form-group">
                         <span> Pesquisar por Jogador</span>
                         <select name='filterPlayer' class="form-control">
+                            <option value='0'> Escolha um jogador </option>
                             @foreach($groups as $player)
                             <option value="{{ $player->id }}" @if(request()->get('filterPlayer') == $player->id) selected @endif> {{ $player->userData->name }}</option>
                             @endforeach
