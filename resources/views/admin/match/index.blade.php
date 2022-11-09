@@ -3,7 +3,6 @@
 @section('content')
 
 <form action="{{ route('admin.matches') }}" method="GET">
-    @csrf
     <div class="card bg-dark text-white">
         <div class="card-header">
             Filtros
@@ -26,7 +25,7 @@
                 <div class="col-md-3 col-lg-3 col-sm-12">
                     <div class="form-group">
                         <span> Pesquisar por Numero da partida</span>
-                        <input type="number" class="form-control" value="matchPosition" value="@if(request()->get('matchPosition') != ''){{ request()->get('matchPosition') }}@endif">
+                        <input type="number" class="form-control" name="matchPosition" value="@if(request()->get('matchPosition') != ''){{ request()->get('matchPosition') }}@endif">
                     </div>
                 </div>
             </div>
