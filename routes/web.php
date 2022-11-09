@@ -26,3 +26,13 @@ Route::middleware('auth')->prefix('cp')->group(function () {
     });
 
 });
+
+
+Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
+    
+    Route::prefix('matches')->group(function() {
+        Route::match(['post', 'get'], '/', 'AdminController@matchesIndex')->name('admin.matches');
+        Route::post('save', 'AdminController@matchesSave')->name('admin.matches.save');
+    });
+
+});

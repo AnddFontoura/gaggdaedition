@@ -48,15 +48,29 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}"> Finais </a>
                     </li>
-                    @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}"> Entrar </a>
-                    </li>
-                    @if (Route::has('register'))
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}"> Cadastrar </a>
+                    @if(\Auth::user()->is_admin)
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Admin
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('admin.matches') }}"> Partidas </a>
+                            </li>
+                        </ul>
                     </li>
                     @endif
+    
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}"> Entrar </a>
+                        </li>
+                        @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}"> Cadastrar </a>
+                        </li>
+                        @endif
                     @else
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -78,7 +92,7 @@
                                     @csrf
                                 </form>
                             </li>
-                            
+
                         </ul>
                     </li>
                     @endguest
@@ -91,18 +105,18 @@
         <div class="row">
             @if(\Request::route()->getName() == 'login')
             <div class="col-md-6 col-lg-6 col-sm-12 mt-3">
-            @else
+                @else
                 <div class="col-12 mt-3">
-            @endif
-                @yield('content')
-            </div>
+                    @endif
+                    @yield('content')
+                </div>
 
-            @if(\Request::route()->getName() == 'login')
-            <div class="col-md-6 col-lg-6 col-sm-12 mt-3">
-                <img src="{{ asset('img/banner_experience.png') }}" class="img w-100"></img>
+                @if(\Request::route()->getName() == 'login')
+                <div class="col-md-6 col-lg-6 col-sm-12 mt-3">
+                    <img src="{{ asset('img/banner_experience.png') }}" class="img w-100"></img>
+                </div>
+                @endif
             </div>
-            @endif
-        </div>
     </main>
 
     <footer class="text-center">
@@ -130,7 +144,7 @@
 
     </footer>
     </div>
-    
+
     <!-- Scripts -->
     <script src="{{ asset('js/jquery.js') }}" defer></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}" defer></script>
