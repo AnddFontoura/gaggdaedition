@@ -35,6 +35,26 @@ class AdminController extends Controller
 
     public function matchesForm(int $matchId = null)
     {
+        $match = null;
+        $groups = Group::get();
 
+        if($matchId) {
+            $match = Matches::where('id', $matchId)->first();
+        }
+
+        return view('admin.match.form', compact('match', 'groups'));
+    }
+
+    public function matchesUpdate(Request $request, int $matchId)
+    {
+        $this->validate($request, [
+            'match_number' => 'required|integer',
+        ]);
+
+        $data = $request->except('_token');
+
+        Matches::where('id', $matchId)->update($data);
+
+        return redirect('admin/matches');
     }
 }

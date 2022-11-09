@@ -67,7 +67,7 @@
                     <td class="text-center"> {{ $match->challenger2->field }} </td>
                     <td class="text-right">
                         <div class="btn-group">
-                            <a href="#" class="btn btn-primary"> Editar </a>
+                            <a href="{{ route('admin.matches.edit', $match->id) }}" class="btn btn-primary"> Editar </a>
                             <a href="#" class="btn btn-success"> Resultados </a>
                         </div>
                     </td>
