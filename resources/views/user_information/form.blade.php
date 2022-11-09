@@ -2,6 +2,7 @@
 
 @section('content')
 <form action="{{ route('user_information.save') }}" method="POST">
+    @csrf
     <div class="card mt-3">
         <div class="card-header">
             Meus dados

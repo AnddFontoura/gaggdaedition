@@ -50,9 +50,17 @@ class UserInformationController extends Controller
             'birthday' => 'required'
         ]);
 
+        $data = $request->except('_token');
         $userId = Auth::user()->id;
+        $data['user_id'] = $userId;
         $userInformation = UserInformation::where('user_id', $userId)
             ->first();
+
+        if (!$userInformation) {
+            $userInformation = UserInformation::create($data);
+        } else {
+            UserInformation::where('user_id', $userId)->update($data);
+        }
 
         return redirect('/');
 

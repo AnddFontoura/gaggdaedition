@@ -22,7 +22,7 @@ Route::middleware('auth')->prefix('cp')->group(function () {
     
     Route::prefix('user-information')->group(function() {
         Route::get('/', 'UserInformationController@create')->name('user_information.form');
-        Route::get('save', 'UserInformationController@save')->name('user_information.save');
+        Route::post('save', 'UserInformationController@store')->name('user_information.save');
     });
 
 });

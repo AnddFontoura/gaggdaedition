@@ -83,7 +83,7 @@ class createMatchesCommand extends Command
                         $match = Matches::create([
                             'challenger_1' => $challenger_1_id,
                             'challenger_2' => $challenger_2_id,
-                            'match_number' => $p + 1,
+                            'match_number' => $p,
                         ]);
                     }
                 }
