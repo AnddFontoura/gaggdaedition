@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\UserInformation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserInformationController extends Controller
 {
@@ -14,7 +15,11 @@ class UserInformationController extends Controller
      */
     public function index()
     {
-        //
+        $userId = Auth::user()->id;
+        $userInformation =  UserInformation::where('user_id', $userId)
+            ->first();
+
+        return view('user_information.form', compact('userInformation'));
     }
 
     /**
@@ -24,7 +29,11 @@ class UserInformationController extends Controller
      */
     public function create()
     {
-        //
+        $userId = Auth::user()->id;
+        $userInformation = UserInformation::where('user_id', $userId)
+            ->first();
+
+        return view('user_information.form', compact('userInformation'));
     }
 
     /**
@@ -35,7 +44,18 @@ class UserInformationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'cpf' => 'required',
+            'phone' => 'required',
+            'birthday' => 'required'
+        ]);
+
+        $userId = Auth::user()->id;
+        $userInformation = UserInformation::where('user_id', $userId)
+            ->first();
+
+        return redirect('/');
+
     }
 
     /**

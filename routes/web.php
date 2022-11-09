@@ -18,3 +18,11 @@ Route::get('home', 'HomeController@dashboard')->name('dashboard');
 Route::get('group', 'GroupController@index')->name('group.index');
 Route::get('match', 'MatchesController@index')->name('match.index');
 
+Route::middleware('auth')->prefix('cp')->group(function () {
+    
+    Route::prefix('user-information')->group(function() {
+        Route::get('/', 'UserInformationController@create')->name('user_information.form');
+        Route::get('save', 'UserInformationController@save')->name('user_information.save');
+    });
+
+});
