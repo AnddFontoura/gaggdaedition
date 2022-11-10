@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Group;
 use App\Matches;
+use App\MatchInfo;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -28,7 +29,7 @@ class AdminController extends Controller
         }
 
         $groups = Group::get();
-        $matches = $matches->paginate(10);
+        $matches = $matches->orderBy('match_number', 'asc')->paginate(10);
 
         return view('admin.match.index', compact('matches','groups'));
     }
@@ -45,6 +46,13 @@ class AdminController extends Controller
         return view('admin.match.form', compact('match', 'groups'));
     }
 
+    public function matchResultForm(int $matchId)
+    {
+        $match = Matches::where('id', $matchId)->first();
+
+        return view('admin.match.result_form', compact('match'));
+    }
+
     public function matchesUpdate(Request $request, int $matchId)
     {
         $this->validate($request, [
@@ -56,5 +64,67 @@ class AdminController extends Controller
         Matches::where('id', $matchId)->update($data);
 
         return redirect('admin/matches');
+    }
+
+    public function MatchResultSave(Request $request, int $matchId)
+    {
+        $this->validate($request, [
+            'challenger1_goals_scored' => 'required|integer',
+            'challenger1_goals_conceded' => 'required|integer',
+            'challenger1_yellow_card' => 'required|integer',
+            'challenger1_red_card' => 'required|integer',
+            'challenger2_goals_scored' => 'required|integer',
+            'challenger2_goals_conceded' => 'required|integer',
+            'challenger2_yellow_card' => 'required|integer',
+            'challenger2_red_card' => 'required|integer',
+        ]);
+
+        $data = $request->except('_token');
+        $match = Matches::where('id', $matchId)->first();
+        
+        $challengerIds = [
+            1 => $match->challenger_1,
+            2 => $match->challenger_2,
+        ];
+
+        foreach ($challengerIds as $key => $challengerId) {
+            if ($key == 1) {
+                $otherKey = 2;
+            } else {
+                $otherKey = 1;
+            }
+
+            $victory = 0;
+            $draw = 0;
+            $defeat = 0;
+            $points = 0;
+
+            if ($data['challenger'. $key .'_goals_scored'] > $data['challenger'. $otherKey .'_goals_scored']) {
+                $victory = 1;
+                $points = 3;
+            }
+            
+            if ($data['challenger'. $key .'_goals_scored'] == $data['challenger'. $otherKey .'_goals_scored']) {
+                $draw = 1;
+                $points = 1;
+            }
+            
+            if ($data['challenger'. $key .'_goals_scored'] < $data['challenger'. $otherKey .'_goals_scored']) {
+                $defeat = 1;
+            }
+            
+            MatchInfo::create([ 
+                'match_id' => $matchId,
+                'group_id' => $key,
+                'victories' => $victory,
+                'drawns' => $draw,
+                'defeats' => $defeat,
+                'goals_scored' => $data['challenger'. $key .'_goals_scored'],
+                'goals_conceded' => $data['challenger'. $key .'_goals_conceded'],
+                'red_card' => $data['challenger'. $key .'_red_card'],
+                'yellow_card' => $data['challenger'. $key .'_yellow_card'],
+            ]);
+        }
+
     }
 }
