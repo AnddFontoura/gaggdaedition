@@ -42,54 +42,68 @@ class createMatchesCommand extends Command
     {
         Matches::whereNull('deleted_at')->delete();
 
+        $duels = [
+            1 => [
+                [ 1, 2,],
+                [ 3, 4,],
+                [ 5, 6,],
+            ],
+            2 => [
+                [ 1, 3,],
+                [ 2, 5,],
+                [ 4, 6,],
+            ],
+            3 => [
+                [ 1, 5,],
+                [ 2, 4,],
+                [ 3, 6,],
+            ],
+            4 => [
+                [ 1, 4,],
+                [ 2, 6,],
+                [ 3, 5,],
+            ],
+            5 => [
+                [ 2, 3,],
+                [ 4, 5,],
+                [ 1, 6,],
+            ],
+        ];
+
         $groups = [
             'A',
-            'B',
             'C',
+            'B',
             'D',
         ];
 
-        $matchDuration = 6;
+        $matchNumber = 1;
 
-        foreach ($groups as $groupName) {
-            if ($groupName == "A" || $groupName == "C") {
-                $matchStart = new Carbon('2020-11-13 11:54');
-            } else {
-                $matchStart = new Carbon('2020-11-13 12:00');
-            }
+        for($d = 1; $d <= count($duels); $d++) {
+            for($c = 0; $c < count($duels[$d]); $c++) {
+                $challenger1_position = $duels[$d][$c]['0'];
+                $challenger2_position = $duels[$d][$c]['1'];
 
-            $players = Group::where('group', $groupName)->get()->toArray();
-            $playerCount = count($players);
+                for($g = 0; $g < sizeof($groups); $g++) {
+                    $groupName = $groups[$g];
 
-            $progressBar = $this->output->createProgressBar($playerCount);
-            $progressBar->start();
+                    $challenger_1 = $this->getChallengerInfo($groupName, $challenger1_position);
+                    $challenger_2 = $this->getChallengerInfo($groupName, $challenger2_position);
+                    
+                    Matches::create([
+                        'challenger_1' => $challenger_1->id,
+                        'challenger_2' => $challenger_2->id,
+                        'match_number' => $matchNumber,
+                    ]);
 
-            for ($i = 1; $i < 6; $i++) {
-                for ($p = 0; $p < $playerCount; $p++) {
-                    $challenger_1_id = $players[$p]['id'];
-
-                    /* Calculo do Id */
-                    $challenger2Id = $p + $i;
-                    if ($challenger2Id >= 6) {
-                        $challenger2Id = $challenger2Id - 6;
-                    }
-
-                    $challenger_2_id = $players[$challenger2Id]['id'];
-
-                    $start = $matchStart->addMinutes($matchDuration * 2)->format('H:i');
-
-                    $alreadyExists = Matches::where('challenger_1', $challenger_2_id)->where('challenger_2', $challenger_1_id)->first();
-                    if (!$alreadyExists) {
-                        $match = Matches::create([
-                            'challenger_1' => $challenger_1_id,
-                            'challenger_2' => $challenger_2_id,
-                            'match_number' => $p,
-                        ]);
-                    }
+                    $this->info('Criou partida número ' . $matchNumber);
+                    $matchNumber++;
                 }
-                $progressBar->advance();
             }
-            $progressBar->finish();
         }
+    }
+
+    protected function getChallengerInfo($groupName, $groupPosition) {
+        return Group::where('group', $groupName)->where('group_position', $groupPosition)->first();
     }
 }
