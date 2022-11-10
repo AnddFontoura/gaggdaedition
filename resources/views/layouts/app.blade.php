@@ -40,10 +40,13 @@
                         <a class="nav-link" href="{{ route('match.index') }}"> Jogos dos Grupos </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}"> Quartas de Finais </a>
+                        <a class="nav-link" href="{{ route('login') }}"> Oitavas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}"> Semi Finais </a>
+                        <a class="nav-link" href="{{ route('login') }}"> Quartas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}"> Semi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}"> Finais </a>
