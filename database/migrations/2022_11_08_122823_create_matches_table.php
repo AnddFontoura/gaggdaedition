@@ -20,7 +20,7 @@ class CreateMatchesTable extends Migration
             $table->integer('match_number')->nullable(false);
             $table->integer('challenger_1_score')->nullable(true)->default(0);
             $table->integer('challenger_2_score')->nullable(true)->default(0);
-            $table->enum('type', ['GROUP', 'QUARTER', 'SEMI', 'FINAL'])->default('GROUP');
+            $table->enum('type', ['GROUP', 'OCTAVES', 'QUARTER', 'SEMI', 'FINAL'])->default('GROUP');
             $table->timestamps();
             $table->softDeletes();
 

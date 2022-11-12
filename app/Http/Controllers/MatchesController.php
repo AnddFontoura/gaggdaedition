@@ -19,6 +19,41 @@ class MatchesController extends Controller
         return view('match.index', compact('matches'));
     }
 
+    public function octaves()
+    {
+        $matches = Matches::where('type', 'OCTAVES')
+            ->orderBy('match_number', 'asc')
+            ->get();
+
+        return view('match.octaves', compact('matches'));
+    }
+
+    public function quarters()
+    {
+        $matches = Matches::where('type', 'QUARTER')
+            ->orderBy('match_number', 'asc')
+            ->get();
+
+        return view('match.quarters', compact('matches'));
+    }
+
+    public function semis()
+    {
+        $matches = Matches::where('type', 'SEMI')
+            ->orderBy('match_number', 'asc')
+            ->get();
+
+        return view('match.semis', compact('matches'));
+    }
+
+    public function finals()
+    {
+        $matches = Matches::where('type', 'FINAL')
+            ->orderBy('match_number', 'asc')
+            ->get();
+
+        return view('match.finals', compact('matches'));
+    }
     /**
      * Show the form for creating a new resource.
      *

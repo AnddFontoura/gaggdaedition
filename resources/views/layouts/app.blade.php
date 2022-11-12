@@ -40,16 +40,16 @@
                         <a class="nav-link" href="{{ route('match.index') }}"> Jogos dos Grupos </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}"> Oitavas</a>
+                        <a class="nav-link" href="{{ route('match.octaves') }}"> Oitavas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}"> Quartas</a>
+                        <a class="nav-link" href="{{ route('match.quarters') }}"> Quartas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}"> Semi</a>
+                        <a class="nav-link" href="{{ route('match.semis') }}"> Semi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}"> Finais </a>
+                        <a class="nav-link" href="{{ route('match.finals') }}"> Finais </a>
                     </li>
                     @if((\Auth::user()) && \Auth::user()->is_admin)
                     <li class="nav-item dropdown">

@@ -79,6 +79,9 @@ class AdminController extends Controller
 
         $data = $request->except('_token');
         $match = Matches::where('id', $matchId)->first();
+        $match->challenger_1_score = $data['challenger1_goals_scored'];
+        $match->challenger_2_score = $data['challenger2_goals_scored'];
+        $match->save()
 
         $challengerIds = [
             1 => $match->challenger_1,

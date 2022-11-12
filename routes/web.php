@@ -17,6 +17,10 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('home', 'HomeController@dashboard')->name('dashboard');
 Route::get('group', 'GroupController@index')->name('group.index');
 Route::get('match', 'MatchesController@index')->name('match.index');
+Route::get('match/octaves', 'MatchesController@octaves')->name('match.octaves');
+Route::get('match/quarters', 'MatchesController@quarters')->name('match.quarters');
+Route::get('match/semis', 'MatchesController@semis')->name('match.semis');
+Route::get('match/finals', 'MatchesController@finals')->name('match.finals');
 
 Route::middleware('auth')->prefix('cp')->group(function () {
     
