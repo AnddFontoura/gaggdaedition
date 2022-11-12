@@ -114,6 +114,7 @@ class AdminController extends Controller
             $matchInfo = MatchInfo::where('match_id', $matchId)->where('group_id', $key)->first();
 
             if (!$matchInfo) {
+
                 MatchInfo::create([
                     'match_id' => $matchId,
                     'group_id' => $challengerIds[$key],
@@ -126,7 +127,7 @@ class AdminController extends Controller
                     'yellow_card' => $data['challenger' . $key . '_yellow_card'],
                 ]);
 
-                $group = Group::where('id', $challengerId[$key])->first();
+                $group = Group::where('id', $challengerIds[$key])->first();
                 
                 if($data['challenger' . $key . '_red_card']) {
                     $points -= 1;
@@ -151,7 +152,7 @@ class AdminController extends Controller
                         'drawns' => $draw,
                         'defeats' => $defeat,
                         'goals_scored' => $data['challenger' . $key . '_goals_scored'],
-                        'goals_conceded' => $data['challenger' . $key . '_goals_conceded'],
+                        'goals_conceded' => $data['challenger' . $otherKey . '_goals_scored'],
                         'red_card' => $data['challenger' . $key . '_red_card'],
                         'yellow_card' => $data['challenger' . $key . '_yellow_card'],
                     ]);

@@ -14,7 +14,13 @@ class GroupController extends Controller
      */
     public function index()
     {
-        $groups = Group::orderBy('group', 'asc')->orderBy('group_position', 'asc')->get();
+        $groups = Group::orderBy('group', 'asc')
+            ->orderBy('points', 'desc')
+            ->orderBy('goals_conceded', 'desc')
+            ->orderBy('yellow_card', 'desc')
+            ->orderBy('red_card', 'desc')
+            ->orderBy('group_position', 'asc')
+            ->get();
 
         return view('group.index', compact('groups'));
     }
