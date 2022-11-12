@@ -68,7 +68,7 @@
                     <td class="text-right">
                         <div class="btn-group">
                             <a href="{{ route('admin.matches.edit', $match->id) }}" class="btn btn-primary"> Editar </a>
-                            <a href="#" class="btn btn-success"> Resultados </a>
+                            <a href="{{ route('admin.matches.form_result', $match->id) }}" class="btn btn-success"> Resultados </a>
                         </div>
                     </td>
                 </tr>
