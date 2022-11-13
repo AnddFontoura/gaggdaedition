@@ -23,7 +23,7 @@ class HomeController extends Controller
     {
         $userId = Auth::user()->id;
         $userInfo = Group::where('user_id', $userId)->first();
-        $userInfoId = $userInfo->id;
+        $userInfoId = $userInfo->id ?? null;
         $groups = null;
         $groupMatches = null;
         $octavesMatches = null;
@@ -86,7 +86,7 @@ class HomeController extends Controller
     {
         $userId = Auth::user()->id;
         $userInfo = Group::where('user_id', $userId)->first();
-        $userInfoId = $userInfo->id;
+        $userInfoId = $userInfo->id ?? null;
         $groups = null;
         $groupMatches = null;
         $octavesMatches = null;

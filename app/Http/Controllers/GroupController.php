@@ -16,7 +16,7 @@ class GroupController extends Controller
     {
         $groups = Group::orderBy('group', 'asc')
             ->orderBy('points', 'desc')
-            ->orderBy('goals_conceded', 'desc')
+            ->orderBy('goals_conceded', 'asc')
             ->orderBy('yellow_card', 'desc')
             ->orderBy('red_card', 'desc')
             ->orderBy('group_position', 'asc')
