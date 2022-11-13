@@ -100,5 +100,205 @@
 </div>
 @endif
 
+@if(count($octavesMatches) > 0)
+<div class="card mt-3">
+    <div class="card-header">
+        Oitavas de Finais
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            @foreach($octavesMatches as $match)
+            <div class="col-12 text-center">
+                <div class="row">
+                    <div class="col-md-5 col-lg-5 col-sm-12">
+                        <p>
+                            @if($userInfo->id == $match->challenger_1)
+                                <b>
+                            @endif
+                                {{ $match->challenger1->userData->name }}
+                            @if($userInfo->id == $match->challenger_1)
+                                </b>
+                            @endif
+                        </p>
+                        <h1> {{ $match->challenger_1_score }} </h1>
+                    </div>
+
+                    <div class="col-md-2 col-lg-2 col-sm-12">
+                        <h1> X </h1>
+                    </div>
+
+                    <div class="col-md-5 col-lg-5 col-sm-12">
+                        <p>
+                            @if($userInfo->id == $match->challenger_2)
+                                <b>
+                            @endif
+                                {{ $match->challenger2->userData->name }}
+                            @if($userInfo->id == $match->challenger_2)
+                                </b>
+                            @endif
+                        </p>
+                        <h1> {{ $match->challenger_2_score }} </h1>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+            @endforeach
+        </div>
+    </div>
+</div>
+@endif
+
+@if(count($quarterMatches) > 0)
+<div class="card mt-3">
+    <div class="card-header">
+        Quartas de finais
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            @foreach($quarterMatches as $match)
+            <div class="col-12 text-center">
+                <div class="row">
+                    <div class="col-md-5 col-lg-5 col-sm-12">
+                        <p>
+                            @if($userInfo->id == $match->challenger_1)
+                                <b>
+                            @endif
+                                {{ $match->challenger1->userData->name }}
+                            @if($userInfo->id == $match->challenger_1)
+                                </b>
+                            @endif
+                        </p>
+                        <h1> {{ $match->challenger_1_score }} </h1>
+                    </div>
+
+                    <div class="col-md-2 col-lg-2 col-sm-12">
+                        <h1> X </h1>
+                    </div>
+
+                    <div class="col-md-5 col-lg-5 col-sm-12">
+                        <p>
+                            @if($userInfo->id == $match->challenger_2)
+                                <b>
+                            @endif
+                                {{ $match->challenger2->userData->name }}
+                            @if($userInfo->id == $match->challenger_2)
+                                </b>
+                            @endif
+                        </p>
+                        <h1> {{ $match->challenger_2_score }} </h1>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+            @endforeach
+        </div>
+    </div>
+</div>
+@endif
+
+@if(count($semiMatches) > 0)
+<div class="card mt-3">
+    <div class="card-header">
+        Semi Finais
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            @foreach($semiMatches as $match)
+            <div class="col-12 text-center">
+                <div class="row">
+                    <div class="col-md-5 col-lg-5 col-sm-12">
+                        <p>
+                            @if($userInfo->id == $match->challenger_1)
+                                <b>
+                            @endif
+                                {{ $match->challenger1->userData->name }}
+                            @if($userInfo->id == $match->challenger_1)
+                                </b>
+                            @endif
+                        </p>
+                        <h1> {{ $match->challenger_1_score }} </h1>
+                    </div>
+
+                    <div class="col-md-2 col-lg-2 col-sm-12">
+                        <h1> X </h1>
+                    </div>
+
+                    <div class="col-md-5 col-lg-5 col-sm-12">
+                        <p>
+                            @if($userInfo->id == $match->challenger_2)
+                                <b>
+                            @endif
+                                {{ $match->challenger2->userData->name }}
+                            @if($userInfo->id == $match->challenger_2)
+                                </b>
+                            @endif
+                        </p>
+                        <h1> {{ $match->challenger_2_score }} </h1>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+            @endforeach
+        </div>
+    </div>
+</div>
+@endif
+
+@if(count($finalMatches) > 0)
+<div class="card mt-3">
+    <div class="card-header">
+        Finais
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            @foreach($finalMatches as $match)
+            <div class="col-12 text-center">
+                <div class="row">
+                    <div class="col-md-5 col-lg-5 col-sm-12">
+                        <p>
+                            @if($userInfo->id == $match->challenger_1)
+                                <b>
+                            @endif
+                                {{ $match->challenger1->userData->name }}
+                            @if($userInfo->id == $match->challenger_1)
+                                </b>
+                            @endif
+                        </p>
+                        <h1> {{ $match->challenger_1_score }} </h1>
+                    </div>
+
+                    <div class="col-md-2 col-lg-2 col-sm-12">
+                        <h1> X </h1>
+                    </div>
+
+                    <div class="col-md-5 col-lg-5 col-sm-12">
+                        <p>
+                            @if($userInfo->id == $match->challenger_2)
+                                <b>
+                            @endif
+                                {{ $match->challenger2->userData->name }}
+                            @if($userInfo->id == $match->challenger_2)
+                                </b>
+                            @endif
+                        </p>
+                        <h1> {{ $match->challenger_2_score }} </h1>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+            @endforeach
+        </div>
+    </div>
+</div>
+@endif
+
 @endif
 @endsection
