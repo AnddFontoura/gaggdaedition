@@ -132,7 +132,7 @@
         <div class="row m-0 mt-3 p-0">
             <div class="col-6 col-md-4 mb-3">
                 <a href="http://goleirodealuguel.com.br" target='_BLANK'>
-                    <img src="{{ asset('img/gda-200w.png') }}" class='w-50'></img>
+                    <img src="{{ asset('img/gda-200w.png') }}" class='w-25'></img>
                 </a>
             </div>
 
