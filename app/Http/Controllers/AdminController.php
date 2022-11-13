@@ -9,10 +9,19 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    public $matchPhase = [
+        'GROUP' => 'Fase de Grupos',
+        'OCTAVES' => 'Oitavas de Finais',
+        'QUARTER' => 'Quartas de Finais',
+        'SEMI' => 'Semi Finais',
+        'FINAL' => 'Finais',
+    ];
+
     public function matchesIndex(Request $request)
     {
         $filter = $request->except('_token');
         $matches = Matches::select();
+        $matchPhases = $this->matchPhase;
 
         if ($filter) {
             if (isset($filter['filterPlayer']) && $filter['filterPlayer'] != 0) {
@@ -23,15 +32,32 @@ class AdminController extends Controller
                 });
             }
 
-            if (isset($filter['matchPosition'])) {
+            if (isset($filter['matchPosition']) && $filter['matchPosition']) {
                 $matches = $matches->where('match_number', $filter['matchPosition']);
+            }
+
+            if(isset($filter['type']) && $filter['type']) {
+                $matches = $matches->where('type', $filter['type']);
             }
         }
 
         $groups = Group::get();
         $matches = $matches->orderBy('match_number', 'asc')->paginate(10);
 
-        return view('admin.match.index', compact('matches', 'groups'));
+        return view('admin.match.index', compact('matches', 'groups', 'matchPhases'));
+    }
+
+    public function newMatchForm(int $matchId = null)
+    {
+        $match = null;
+        $groups = Group::get();
+        $matchPhases = $this->matchPhase;
+
+        if ($matchId) {
+            $match = Matches::where('id', $matchId)->first();
+        }
+
+        return view('admin.match.new_form', compact('match', 'groups', 'matchPhases'));
     }
 
     public function matchesForm(int $matchId = null)
@@ -62,6 +88,25 @@ class AdminController extends Controller
         $data = $request->except('_token');
 
         Matches::where('id', $matchId)->update($data);
+
+        return redirect('admin/matches');
+    }
+
+    public function newMatchSave(Request $request, int $matchId = null)
+    {
+        $this->validate($request, [
+            'challenger_1' => 'required|integer',
+            'challenger_2' => 'required|integer',
+            'type' => 'required|in:GROUP,OCTAVES,QUARTER,SEMI,FINAL',
+            'match_number' => 'required|integer'
+        ]);
+
+        $data = $request->except('_token');
+        if ($matchId) {
+            Matches::where('id', $matchId)->update($data);
+        } else {
+            Matches::create($data);
+        }
 
         return redirect('admin/matches');
     }
@@ -136,16 +181,18 @@ class AdminController extends Controller
                     $points -= 1;
                 }
 
-                $group->points += $points;
-                $group->matches += 1;
-                $group->victories += $victory;
-                $group->drawns += $draw;
-                $group->defeats += $defeat;
-                $group->goals_scored += $data['challenger' . $key . '_goals_scored'];
-                $group->goals_conceded += $data['challenger' . $otherKey . '_goals_scored'];
-                $group->red_card += $data['challenger' . $key . '_red_card'];
-                $group->yellow_card += $data['challenger' . $key . '_yellow_card'];
-                $group->save();
+                if ($match->type == 'GROUP') {
+                    $group->points += $points;
+                    $group->matches += 1;
+                    $group->victories += $victory;
+                    $group->drawns += $draw;
+                    $group->defeats += $defeat;
+                    $group->goals_scored += $data['challenger' . $key . '_goals_scored'];
+                    $group->goals_conceded += $data['challenger' . $otherKey . '_goals_scored'];
+                    $group->red_card += $data['challenger' . $key . '_red_card'];
+                    $group->yellow_card += $data['challenger' . $key . '_yellow_card'];
+                    $group->save();
+                }
                 
             } else {
                 MatchInfo::where('match_id', $matchId)

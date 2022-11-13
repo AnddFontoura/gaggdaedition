@@ -28,6 +28,17 @@
                         <input type="number" class="form-control" name="matchPosition" value="@if(request()->get('matchPosition') != ''){{ request()->get('matchPosition') }}@endif">
                     </div>
                 </div>
+
+                <div class="col-md-3 col-lg-3 col-sm-12">
+                    <div class="form-group">
+                        <span> Tipo de partida</span>
+                        <select name='type' class="form-control">
+                            @foreach($matchPhases as $key => $matchPhase)
+                            <option value="{{ $key }}" @if(request()->get('type') == $key) selected @endif> {{ $matchPhase }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -50,6 +61,7 @@
                     <th style="width: 30%"> Jogador 2 </th>
                     <th class="text-center"> Grupo </th>
                     <th class="text-center"> Quadra </th>
+                    <th class="text-center"> Tipo </th>
                     <th class="text-center"> Opções </th>
                 </tr>
             </thead>
@@ -63,8 +75,9 @@
                     <td class="text-center"> X </td>
                     <td class="text-center"> {{ $match->challenger_2_score }} </td>
                     <td style="width: 30%"> {{ $match->challenger2->userData->name }}</td>
-                    <td class="text-center"> {{ $match->challenger2->group }} </td>
+                    <td class="text-center"> {{ $match->challenger2->group ?? '' }} </td>
                     <td class="text-center"> {{ $match->challenger2->field }} </td>
+                    <td class="text-center"> {{ $matchPhases[$match->type] }}
                     <td class="text-right">
                         <div class="btn-group">
                             <a href="{{ route('admin.matches.edit', $match->id) }}" class="btn btn-primary"> Editar </a>

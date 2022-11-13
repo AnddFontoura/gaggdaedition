@@ -59,6 +59,10 @@
 
                         <ul class="dropdown-menu">
                             <li>
+                                <a class="dropdown-item" href="{{ route('admin.matches.new') }}"> Criar Partidas </a>
+                            </li>
+                            
+                            <li>
                                 <a class="dropdown-item" href="{{ route('admin.matches') }}"> Partidas </a>
                             </li>
                         </ul>
