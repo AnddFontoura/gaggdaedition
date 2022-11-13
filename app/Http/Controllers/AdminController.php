@@ -159,10 +159,9 @@ class AdminController extends Controller
                 $defeat = 1;
             }
 
-            $matchInfo = MatchInfo::where('match_id', $matchId)->where('group_id', $key)->first();
+            $matchInfo = MatchInfo::where('match_id', $matchId)->where('group_id', $challengerId)->first();
 
             if (!$matchInfo) {
-                
                 MatchInfo::create([
                     'match_id' => $matchId,
                     'group_id' => $challengerIds[$key],
