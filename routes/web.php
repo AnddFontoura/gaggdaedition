@@ -31,7 +31,6 @@ Route::middleware('auth')->prefix('cp')->group(function () {
 
 });
 
-
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
     
     Route::prefix('matches')->group(function() {
