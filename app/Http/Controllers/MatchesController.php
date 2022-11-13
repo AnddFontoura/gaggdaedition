@@ -14,7 +14,9 @@ class MatchesController extends Controller
      */
     public function index()
     {
-        $matches = Matches::orderBy('match_number', 'asc')->get();
+        $matches = Matches::where('type', 'GROUP')
+            ->orderBy('match_number', 'asc')
+            ->get();
 
         return view('match.index', compact('matches'));
     }
