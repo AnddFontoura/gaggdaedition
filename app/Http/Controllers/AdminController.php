@@ -75,8 +75,14 @@ class AdminController extends Controller
     public function matchResultForm(int $matchId)
     {
         $match = Matches::where('id', $matchId)->first();
+        $challenger1Info = MatchInfo::where('group_id', $match->challenger_1)
+            ->where('match_id', $matchId)
+            ->first();
+        $challenger2Info = MatchInfo::where('group_id', $match->challenger_2)
+            ->where('match_id', $matchId)
+            ->first();
 
-        return view('admin.match.result_form', compact('match'));
+        return view('admin.match.result_form', compact('match', 'challenger2Info', 'challenger1Info'));
     }
 
     public function matchesUpdate(Request $request, int $matchId)

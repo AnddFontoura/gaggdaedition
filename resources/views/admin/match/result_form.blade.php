@@ -19,17 +19,17 @@
 
                     <div class="form-group mt-3">
                         <span> Gols feitos </span>
-                        <input type="number" name="challenger1_goals_scored" class="form-control" value="0">
+                        <input type="number" name="challenger1_goals_scored" class="form-control" value="@if($challenger1Info){{$challenger1Info->goals_scored}}@else{{ 0 }}@endif">
                     </div>
 
                     <div class="form-group mt-3">
                         <span> Cartões Amarelos </span>
-                        <input type="number" name="challenger1_yellow_card" class="form-control" value="0">
+                        <input type="number" name="challenger1_yellow_card" class="form-control" value="@if($challenger1Info){{$challenger1Info->yellow_card}}@else{{ 0 }}@endif">
                     </div>
 
                     <div class="form-group mt-3">
                         <span> Cartões Vermelhos </span>
-                        <input type="number" name="challenger1_red_card" class="form-control" value="0">
+                        <input type="number" name="challenger1_red_card" class="form-control" value="@if($challenger1Info){{$challenger1Info->red_card}}@else{{ 0 }}@endif">
                     </div>
                 </div>
 
@@ -41,17 +41,17 @@
 
                     <div class="form-group mt-3">
                         <span> Gols feitos </span>
-                        <input type="number" name="challenger2_goals_scored" class="form-control" value="0">
+                        <input type="number" name="challenger2_goals_scored" class="form-control" value="@if($challenger2Info){{$challenger2Info->goals_scored}}@else{{ 0 }}@endif">
                     </div>
 
                     <div class="form-group mt-3">
                         <span> Cartões Amarelos </span>
-                        <input type="number" name="challenger2_yellow_card" class="form-control" value="0">
+                        <input type="number" name="challenger2_yellow_card" class="form-control" value="@if($challenger2Info){{$challenger2Info->yellow_card}}@else{{ 0 }}@endif">
                     </div>
 
                     <div class="form-group mt-3">
                         <span> Cartões Vermelhos </span>
-                        <input type="number" name="challenger2_red_card" class="form-control" value="0">
+                        <input type="number" name="challenger2_red_card" class="form-control" value="@if($challenger2Info){{$challenger2Info->red_card}}@else{{ 0 }}@endif">
                     </div>
                 </div>
             </div>
