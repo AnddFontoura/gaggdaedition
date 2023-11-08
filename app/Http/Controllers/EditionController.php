@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class EditionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         $editions = Edition::paginate();
@@ -19,15 +14,10 @@ class EditionController extends Controller
         return view('admin.edition.index', compact('editions'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(int $id = null)
     {
         $edition = null;
-        
+
         if ($id) {
             $edition = Edition::where('id', $id)->first();
         }
@@ -35,59 +25,54 @@ class EditionController extends Controller
         return view('admin.edition.form', compact('edition'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function save(Request $request, int $id = null)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|min:1|max:1000',
+            'banner' => 'nullable|file:png,jpg,jpeg,gif',
+            'description' => 'required|string|min:1|max:10000',
+            'max_participants' => 'required|integer',
+            'inscriptions_begins_at' => 'required|date',
+            'inscriptions_ends_at' => 'required|date',
+        ]);
+
+        $data = $request->only([
+            'name',
+            'banner',
+            'description',
+            'max_participants',
+            'inscriptions_begins_at',
+            'inscriptions_ends_at',
+        ]);
+
+        if ($id) {
+            Edition::where('id', $id)->update($data);
+
+            $message = "Edição atualizada com sucesso";
+        } else {
+            Edition::create($data);
+            
+            $message = "Edição criada com sucesso";
+        }
+
+        return redirect('admin.editions.index')->with('message', $message);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Edition  $edition
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Edition $edition)
+    public function view(int $id)
     {
-        //
+        $edition = Edition::where('id', $id)->first();
+
+        if (!$edition) {
+            return redirect('admin.editions.index')->with('error', 'Edição não encontrada ou excluída');
+        }
+
+        return redirect('admin.editions.view', compact('edition'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Edition  $edition
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Edition $edition)
+    public function delete(int $id)
     {
-        //
-    }
+        Edition::where('id', $id)->delete();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Edition  $edition
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Edition $edition)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Edition  $edition
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Edition $edition)
-    {
-        //
+        return redirect('admin.editions.index')->with('message', 'Edição excluída com sucesso');
     }
 }
