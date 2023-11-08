@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Controllers\EditionController;
+
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
@@ -31,8 +33,21 @@ Route::middleware('auth')->prefix('cp')->group(function () {
 
 });
 
-Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
-    
+Route::middleware(['auth', 'is_admin'])
+->prefix('admin')
+->name('admin.')
+->group(function () {
+    Route::prefix('editions')
+    ->name('editions.')
+    ->group(function() {
+        Route::get('/', [EditionController::class, 'index'])->name('index');
+        Route::get('form', [EditionController::class,'create'])->name('create');
+        Route::get('form/{id}', [EditionController::class,'create'])->name('edit');
+        Route::post('save', [EditionController::class,'save'])->name('save');
+        Route::post('save/{id}', [EditionController::class,'update'])->name('update');
+        Route::delete('delete/{id}', [EditionController::class,'delete'])->name('delete');
+    });
+
     Route::prefix('matches')->group(function() {
         Route::match(['post', 'get'], '/', 'AdminController@matchesIndex')->name('admin.matches');
         Route::get('new-match', 'AdminController@newMatchForm')->name('admin.matches.new');

@@ -21,6 +21,7 @@ class CreateMatchesTable extends Migration
             $table->integer('challenger_1_score')->nullable(true)->default(0);
             $table->integer('challenger_2_score')->nullable(true)->default(0);
             $table->enum('type', ['GROUP', 'OCTAVES', 'QUARTER', 'SEMI', 'FINAL'])->default('GROUP');
+            $table->time('expected_time')->nullable(true);
             $table->timestamps();
             $table->softDeletes();
 

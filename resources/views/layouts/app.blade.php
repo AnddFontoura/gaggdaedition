@@ -34,23 +34,9 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <!-- Authentication Links -->
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('group.index') }}"> Pontuação dos Grupos </a>
+                        <a class="nav-link" href="{{ route('group.index') }}"> Edições </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('match.index') }}"> Jogos dos Grupos </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('match.octaves') }}"> Oitavas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('match.quarters') }}"> Quartas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('match.semis') }}"> Semi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('match.finals') }}"> Finais </a>
-                    </li>
+                  
                     @if((\Auth::user()) && \Auth::user()->is_admin)
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -59,11 +45,7 @@
 
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" href="{{ route('admin.matches.new') }}"> Criar Partidas </a>
-                            </li>
-                            
-                            <li>
-                                <a class="dropdown-item" href="{{ route('admin.matches') }}"> Partidas </a>
+                                <a class="dropdown-item" href="{{ route('admin.editions.index') }}"> Edições </a>
                             </li>
                         </ul>
                     </li>

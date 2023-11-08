@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGroupsTable extends Migration
+class CreateEditionGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('groups', function (Blueprint $table) {
+        Schema::create('edition_groups', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id')->nullable(false);
-            $table->string('group', 1)->nullable(false);
-            $table->integer('field')->nullable(false);
-            $table->integer('group_position')->nullable(false);
+            $table->unsignedBigInteger('edition_id')->nullable(false);
+            $table->string('name', 100)->nullable(false);
+            $table->string('icon', 1000)->nullable(true);
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('edition_id')->references('id')->on('editions');
         });
     }
 
@@ -33,6 +32,6 @@ class CreateGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('groups');
+        Schema::dropIfExists('editions_groups');
     }
 }
