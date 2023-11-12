@@ -36,7 +36,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('group.index') }}"> Edições </a>
                     </li>
-                  
+
                     @if((\Auth::user()) && \Auth::user()->is_admin)
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -50,16 +50,16 @@
                         </ul>
                     </li>
                     @endif
-    
+
                     @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}"> Entrar </a>
-                        </li>
-                        @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}"> Cadastrar </a>
-                        </li>
-                        @endif
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}"> Entrar </a>
+                    </li>
+                    @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}"> Cadastrar </a>
+                    </li>
+                    @endif
                     @else
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -97,6 +97,35 @@
                 @else
                 <div class="col-12 mt-3">
                     @endif
+
+                    @if($errors->any())
+                    <div class="row">
+                        <div class="col-12 p-1">
+                            <div class="alert alert-danger">
+                                @foreach ($errors->all() as $error)
+                                <p> {{ $error }} </p>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+
+                    @if(session('error'))
+                    <div class="row">
+                        <div class="col-12 p-1">
+                            <div class="alert alert-danger"> {{ session('error')}} </div>
+                        </div>
+                    </div>
+                    @endif
+
+                    @if(session('success'))
+                    <div class="row">
+                        <div class="col-12 p-1">
+                            <div class="alert alert-success"> {{ session('success')}} </div>
+                        </div>
+                    </div>
+                    @endif
+
                     @yield('content')
                 </div>
 

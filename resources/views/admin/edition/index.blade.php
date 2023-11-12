@@ -59,9 +59,10 @@
                 <tr>
                     <td style="width: 30%"> {{ $edition->id }}</td>
                     <td class="text-center"> {{ $edition->name }} </td>
+                    <td class="text-center">
                         <div class="btn-group">
                             <a href="{{ route('admin.editions.edit', $edition->id) }}" class="btn btn-primary"> Editar </a>
-                            <a href="{{ route('admin.editions.form_result', $edition->id) }}" class="btn btn-success"> Resultados </a>
+                            <a href="{{ route('admin.editions.view', $edition->id) }}" class="btn btn-success"> Resultados </a>
                         </div>
                     </td>
                 </tr>

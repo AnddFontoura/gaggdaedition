@@ -43,6 +43,7 @@ Route::middleware(['auth', 'is_admin'])
         Route::get('/', [EditionController::class, 'index'])->name('index');
         Route::get('form', [EditionController::class,'create'])->name('create');
         Route::get('form/{id}', [EditionController::class,'create'])->name('edit');
+        Route::get('view/{id}', [EditionController::class,'view'])->name('view');
         Route::post('save', [EditionController::class,'save'])->name('save');
         Route::post('save/{id}', [EditionController::class,'update'])->name('update');
         Route::delete('delete/{id}', [EditionController::class,'delete'])->name('delete');

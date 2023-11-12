@@ -1,7 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+@php
 
+    if(isset($edition))
+    {
+        
+    }
+
+@endphp
 <div class='col-12'>
     <a href="{{ route('admin.editions.index') }}" class='btn btn-lg btn-primary'> Listar Edições </a>
 </div>
@@ -18,7 +25,7 @@
                 <div class="col-12 mt-1">
                     <div class="form-group">
                         <span> Nome da Edição </span>
-                        <input type='text' class='form-control' name='name'></input>
+                        <input type='text' class='form-control' name='name' value='{{ old("name") }}'></input>
                     </div>
                 </div>
 
@@ -32,28 +39,28 @@
                 <div class="col-12 mt-1">
                     <div class="form-group">
                         <span> Descrição da Edição </span>
-                        <textarea class='form-control' name='description'></textarea>
+                        <textarea class='form-control' name='description'>{{ old("description") }}</textarea>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-lg-3 col-sm-12 mt-1">
                     <div class="form-group">
                         <span> Início das inscrições </span>
-                        <input type='date' class='form-control' name='inscription_begins_at'></input>
+                        <input type='date' class='form-control' name='inscriptions_begins_at' value='{{ old("inscriptions_begins_at") }}'></input>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-lg-3 col-sm-12 mt-1">
                     <div class="form-group">
                         <span> Fim das Inscrições </span>
-                        <input type='date'class='form-control' name='inscription_ends_at'></input>
+                        <input type='date'class='form-control' name='inscriptions_ends_at' value='{{ old("inscriptions_ends_at") }}'></input>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-lg-3 col-sm-12 mt-1">
                     <div class="form-group">
                         <span> Máximo de participantes </span>
-                        <input type='number' class='form-control' name='description'></input>
+                        <input type='number' class='form-control' name='max_participants' value='{{ old("max_participants") }}'></input>
                     </div>
                 </div>
             </div>

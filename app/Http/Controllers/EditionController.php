@@ -55,7 +55,7 @@ class EditionController extends Controller
             $message = "Edição criada com sucesso";
         }
 
-        return redirect('admin.editions.index')->with('message', $message);
+        return redirect('admin/editions')->with('message', $message);
     }
 
     public function view(int $id)
